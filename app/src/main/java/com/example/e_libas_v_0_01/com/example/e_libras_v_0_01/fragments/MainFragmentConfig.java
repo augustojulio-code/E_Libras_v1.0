@@ -68,7 +68,7 @@ public class MainFragmentConfig extends Fragment
                 }
                 else if (position == 1)
                 {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://augustojulio-code.github.io/")));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com.br/")));
                 }
                 else if (position == 2)
                 {
