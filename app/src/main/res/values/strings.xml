@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">E Libras</string>
+    <string name="title_activity_main_fragment_menu">E-Libras</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_ranking">Ranking</string>
+    <string name="title_config">Opções</string>
+    <string name="title_info">Alfabeto</string>
+
+    <string name="info_ajuda">
+        Se ainda tiver duvidas, mande um email para: <a href="elibras@gmail.com">elibras@gmail.com</a>
+    </string>
+
+    <string name="ajuda_pergunta1">
+        <![CDATA[<font size="35"><b>1 - O que e o E-Libras?</b></font><br />]]>
+        E-Libras e um aplicativo desenvolvido para o aprendizado de libras
+    </string>
+</resources>
