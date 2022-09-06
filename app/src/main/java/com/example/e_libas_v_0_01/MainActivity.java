@@ -56,16 +56,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        progressDialog = new ProgressDialog(this);
 
 
-        registrar = (Button) findViewById(R.id.btnsalvar);
+        registrar = findViewById(R.id.btnsalvar);
 
-        edtemail = (EditText) findViewById(R.id.txtemail);
-        edtsenha = (EditText) findViewById(R.id.txtsenha);
-        edtconfirmasenha = (EditText) findViewById(R.id.txtconfirma_senha);
+        edtemail = findViewById(R.id.txtemail);
+        edtsenha = findViewById(R.id.txtsenha);
+        edtconfirmasenha = findViewById(R.id.txtconfirma_senha);
 
-        edtnome = (EditText) findViewById(R.id.txtnomecompleto);
-        edtapelido = (EditText) findViewById(R.id.txtapelido);
-        edtnivel = (EditText) findViewById(R.id.txtnivelusuario);
-        edtpontos = (EditText) findViewById(R.id.txtpontosusuario);
+        edtnome = findViewById(R.id.txtnomecompleto);
+        edtapelido = findViewById(R.id.txtapelido);
+        edtnivel = findViewById(R.id.txtnivelusuario);
+        edtpontos = findViewById(R.id.txtpontosusuario);
 
 
         txtviewLogin = (TextView) findViewById(R.id.txtviewsignin);
