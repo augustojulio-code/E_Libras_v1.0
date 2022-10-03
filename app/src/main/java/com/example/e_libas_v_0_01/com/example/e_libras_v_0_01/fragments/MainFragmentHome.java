@@ -44,6 +44,7 @@ public class MainFragmentHome extends Fragment implements View.OnClickListener
 
     Button atividade, atividade2, atividade3, atividade4, atividade5, atividade6,atividade7;
 
+    //Tela principal e primeiras tarefas
 
     @Nullable
     @Override
