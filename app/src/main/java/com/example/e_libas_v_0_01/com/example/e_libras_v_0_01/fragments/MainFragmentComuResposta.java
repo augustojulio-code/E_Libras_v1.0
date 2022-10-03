@@ -47,6 +47,7 @@ public class MainFragmentComuResposta extends Fragment implements View.OnClickLi
     FirebaseAuth firebaseAuth;
     Query query, query_respostas;
 
+    //Tela de perguntas e respostas 
 
     private List<Respostas> respostasArrayList = new ArrayList<Respostas>();
     private ArrayAdapter<Respostas> arrayAdapter;

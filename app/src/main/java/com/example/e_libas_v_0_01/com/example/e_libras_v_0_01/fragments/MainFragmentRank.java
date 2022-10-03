@@ -45,7 +45,7 @@ public class MainFragmentRank extends Fragment
 
     int medalhasimgs[]= {R.drawable.m10,R.drawable.m9,R.drawable.m8,R.drawable.m7,R.drawable.m6,R.drawable.m5,R.drawable.m4,R.drawable.m3,R.drawable.m2,R.drawable.m1};
 
-    // Tramento de ranking de usuarios 
+    // Tramento de ranking de usuarios
 
     @Nullable
     @Override
