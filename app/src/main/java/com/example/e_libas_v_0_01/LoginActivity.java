@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private FirebaseAuth firebaseAuth;
 
-
+    //Tratando as reduncias do Login
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,13 +51,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         barra = new ProgressDialog(this);
 
-        txtedtemail = (EditText) findViewById(R.id.edttxtemail);
-        txtedtsenha = (EditText) findViewById(R.id.edttxtsenha);
+        txtedtemail =  findViewById(R.id.edttxtemail);
+        txtedtsenha =  findViewById(R.id.edttxtsenha);
 
-        login = (Button) findViewById(R.id.btnlogin);
+        login =  findViewById(R.id.btnlogin);
 
-        registrar = (TextView) findViewById(R.id.txtviewsignup);
-        recuperarsenha = (TextView) findViewById(R.id.txtrecuperarsenha);
+        registrar =  findViewById(R.id.txtviewsignup);
+        recuperarsenha =  findViewById(R.id.txtrecuperarsenha);
 
         login.setOnClickListener(this);
         registrar.setOnClickListener(this);

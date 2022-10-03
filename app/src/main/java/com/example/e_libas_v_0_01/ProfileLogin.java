@@ -51,14 +51,14 @@ public class ProfileLogin extends AppCompatActivity implements View.OnClickListe
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
+        //tratando reduncias do profile
 
+        adicionarpontos =  findViewById(R.id.txtpontomanual);
+        usuarioemail =  findViewById(R.id.txtviewuser);
 
-        adicionarpontos = (EditText) findViewById(R.id.txtpontomanual);
-        usuarioemail = (TextView) findViewById(R.id.txtviewuser);
-
-        adicionar = (Button) findViewById(R.id.btnadicionar);
-        logout = (Button) findViewById(R.id.btnlogout);
-        lista = (Button) findViewById(R.id.btnlista);
+        adicionar =  findViewById(R.id.btnadicionar);
+        logout =  findViewById(R.id.btnlogout);
+        lista =  findViewById(R.id.btnlista);
 
         logout.setOnClickListener(this);
         lista.setOnClickListener(this);
