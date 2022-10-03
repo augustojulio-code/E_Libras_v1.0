@@ -131,6 +131,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    //Recuperação de senha via E-mail
+
     private void recuperarSenhaDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
