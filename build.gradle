@@ -27,14 +27,3 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-plugins {
-  id "org.sonarqube" version "3.5.0.2730"
-}
-
-sonarqube {
-  properties {
-    property "sonar.projectKey", "augustojulio-code_E_Libras_v1.0"
-    property "sonar.organization", "augustojulio-code"
-    property "sonar.host.url", "https://sonarcloud.io"
-  }
-}
