@@ -24,6 +24,7 @@ import com.example.e_libas_v_0_01.Previa_Atividade_7;
 import com.example.e_libas_v_0_01.Previa_atividade_6;
 import com.example.e_libas_v_0_01.ProfileLogin;
 import com.example.e_libas_v_0_01.R;
+import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.controller.UserController;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,30 +34,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainFragmentHome extends Fragment implements View.OnClickListener
-{
-
-    FirebaseAuth firebaseAuth;
-
-    DatabaseReference reference, databaseReference;
+public class MainFragmentHome extends Fragment implements View.OnClickListener {
 
     TextView nickname;
 
     Button atividade, atividade2, atividade3, atividade4, atividade5, atividade6,atividade7;
+    UserController controller = new UserController();
 
-    //Tela principal e primeiras tarefas
+    //Tela principal e primeiras tarefas Inflando um layout dentro de um fragmento.
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
-    {
-        firebaseAuth = FirebaseAuth.getInstance();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home,container, false);
 
-        nickname = (TextView) view.findViewById(R.id.txthomeusuario);
-
-        //Button botao = (Button) view.findViewById(R.id.botao123);
+        nickname = view.findViewById(R.id.txthomeusuario);
 
 
          atividade = view.findViewById(R.id.botao_atividade);
@@ -68,14 +61,6 @@ public class MainFragmentHome extends Fragment implements View.OnClickListener
          atividade7 = view.findViewById(R.id.botao_atividade_7);
 
 
-        /*botao.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                startActivity(new Intent(getActivity(), ProfileLogin.class));
-            }
-        });*/
 
         atividade.setOnClickListener(this);
         atividade2.setOnClickListener(this);
@@ -88,68 +73,19 @@ public class MainFragmentHome extends Fragment implements View.OnClickListener
         return view;
     }
 
+    //Métodos que serão executados Assim que a tela carregar.
     @Override
-    public void onStart()
-    {
+    public void onStart() {
         super.onStart();
 
-        final FirebaseUser user = firebaseAuth.getCurrentUser();
+        controller.nickReturn(nickname);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Userscore").child(user.getUid());
+        controller.buttonEnableReturn(atividade6);
+        controller.buttonEnableReturn(atividade7);
 
-        reference = FirebaseDatabase.getInstance().getReference("Usuario").child(user.getUid());
-
-        reference.addValueEventListener(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                if (!dataSnapshot.exists())
-                {
-                    return;
-                }
-                String nick = dataSnapshot.child("apelido").getValue().toString();
-
-                nickname.setText("Olá "+ nick);
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
-
-            }
-        });
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-
-                if (!dataSnapshot.exists())
-                {
-                    return;
-                }
-
-                String pontos = dataSnapshot.child("pontos").getValue().toString();
-                int int_pontos = Integer.parseInt(pontos);
-
-                if (int_pontos< 1000)
-                {
-                    atividade6.setEnabled(false);
-                    atividade7.setEnabled(false);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
 
+    //Chamando os metodos de click de cada botão
     @Override
     public void onClick(View view)
     {
@@ -183,4 +119,5 @@ public class MainFragmentHome extends Fragment implements View.OnClickListener
         }
 
     }
+
 }
