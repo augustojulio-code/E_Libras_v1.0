@@ -3,6 +3,7 @@ package com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.contr
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,19 +11,24 @@ import android.widget.Toast;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 public class UserController {
 
     FirebaseAuth firebaseAuth;
     DatabaseReference reference,databaseReference ;
-
+    Query query = FirebaseDatabase.getInstance().getReference("Userscore").orderByChild("pontos").limitToLast(10);
+    ArrayAdapter<String> adapter;
 
     public TextView nickReturn(final TextView view){
 
@@ -93,6 +99,7 @@ public class UserController {
 
         return button;
     }
+
 }
 
 
