@@ -1,14 +1,14 @@
 package com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.controller;
 
 import android.support.annotation.NonNull;
+
 import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Usuario;
+
+import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Userscore;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -28,7 +28,7 @@ public class UserController {
     FirebaseAuth firebaseAuth;
     DatabaseReference reference,databaseReference ;
     Query query = FirebaseDatabase.getInstance().getReference("Userscore").orderByChild("pontos").limitToLast(10);
-    ArrayAdapter<String> adapter;
+
 
     public TextView nickReturn(final TextView view){
 
@@ -100,6 +100,42 @@ public class UserController {
         return button;
     }
 
+    public void lista(final ArrayList<String> arrayList, final ArrayAdapter<String> adapter){
+
+        query.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    String namepontos = dataSnapshot.getValue(Userscore.class).toString();
+                    arrayList.add(namepontos);
+
+                    adapter.notifyDataSetChanged();
+
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
 }
 
 

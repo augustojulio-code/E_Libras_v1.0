@@ -1,14 +1,10 @@
 package com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.fragments;
 
-import android.R.layout;
-import android.app.ProgressDialog;
+
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,32 +16,15 @@ import android.widget.TextView;
 
 import com.example.e_libas_v_0_01.R;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.controller.UserController;
-import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Userscore;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 public class MainFragmentRank extends Fragment
 {
-    ListView listView, listmedalha;
-    DatabaseReference databaseReference;
-    //ArrayAdapter<Userscore> arrayAdapter;
+    ListView listView;
     ArrayList<String> arrayList = new ArrayList<>();
-    String listarusuario;
-    Query query;
     UserController controller = new UserController();
-    //List<Userscore> userscoreArrayList = new ArrayList<Userscore>();
-    boolean i=true;
-
     listaAdapter adapter;
 
     int medalhasimgs[]= { R.drawable.m10,R.drawable.m9,R.drawable.m8,R.drawable.m7,R.drawable.m6,R.drawable.m5,R.drawable.m4,R.drawable.m3,R.drawable.m2,R.drawable.m1};
@@ -53,90 +32,26 @@ public class MainFragmentRank extends Fragment
     // Tramento de ranking de usuarios
 
     @Nullable
-    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-
 
         final View view = inflater.inflate(R.layout.fragment_rank, container,false);
 
         listView = view.findViewById(R.id.listviewfragment);
 
-
-        query = FirebaseDatabase.getInstance().getReference("Userscore").orderByChild("pontos").limitToLast(10);//orderByChild("pontos").limitToLast(10);
-
-
-
-        adapter = new listaAdapter(getContext(),arrayList,medalhasimgs);
-        listView.setAdapter(adapter);
-
-        listar();
-
-
-
-
         return view;
 
     }
 
-
     @Override
     public void onStart() {
         super.onStart();
-
-
+        adapter = new listaAdapter(getContext(),arrayList,medalhasimgs);
+        controller.lista(arrayList,adapter);
+        listView.setAdapter(adapter);
     }
 
-    private void listar()
-    {
-        query.addChildEventListener(new ChildEventListener()
-        {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
-            {
-                 if (!dataSnapshot.exists())
-                {
-                    return;
-                }
-
-                     listarusuario= dataSnapshot.getValue(Userscore.class).toString();
-
-
-                     arrayList.add(listarusuario);
-
-                     adapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
-            {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot)
-            {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
-            {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
-
-            }
-        });
-
-
-    }
-
-    class listaAdapter extends ArrayAdapter<String>
+    public class listaAdapter extends ArrayAdapter<String>
     {
         Context context;
         ArrayList<String> listauserscore;
@@ -171,7 +86,6 @@ public class MainFragmentRank extends Fragment
         }
 
     }
-
 
 
 }
