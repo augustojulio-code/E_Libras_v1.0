@@ -5,7 +5,6 @@
 <h4>A aplicação E-Libras é um app mobile de prendizado de libras(Linguagem brasileira de sinais) utilizando dos principios de gameficação,o objetivo do app é propor o aprendizado de libras através de gameficação, se utilizando de mecanicas de jogos em um ambiente de não jogo.</h4>
 
 
-
 ## Arquitetura da Aplicação
 <h4>A aplicação é baseada na arquitetura de micro serviços, utilizando a integração do andoid studio com o o banco de dados noSQL google firebase.</h4>
 
