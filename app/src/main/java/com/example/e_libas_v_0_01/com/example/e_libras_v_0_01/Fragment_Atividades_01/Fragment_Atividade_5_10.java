@@ -1,6 +1,7 @@
 package com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.Fragment_Atividades_01;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.example.e_libas_v_0_01.R;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.Evento_Botao.Evento_Firebase;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.Evento_Botao.Manipula_Button;
+import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.recursos.Recursos;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +36,7 @@ public class Fragment_Atividade_5_10 extends Fragment implements View.OnClickLis
     DatabaseReference databaseReference, databaseReference2;
     FirebaseAuth firebaseAuth;
     int retorno_pontos;
+    Recursos recursos = new Recursos();
 
     @Nullable
     @Override
@@ -98,49 +101,24 @@ public class Fragment_Atividade_5_10 extends Fragment implements View.OnClickLis
     @Override
     public void onClick(View view)
     {
-        if (view == proximo)
-        {
-            StringBuffer buffer = new StringBuffer();
-
-            buffer.append("Acertos: "+acertos+"\n");
-            buffer.append("Erros  : "+erros+"\n");
-
-            AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-
-            dialog.setTitle("Parabéns");
-            dialog.setMessage(buffer);
-            dialog.setIcon(R.mipmap.elibraslogo);
-            dialog.setPositiveButton("OK", new DialogInterface.OnClickListener()
-            {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i)
-                {
-                    updatescore.Update_pontos(retorno_pontos,pontos);
-                    getActivity().finish();
-
-                    dialogInterface.dismiss();
-                }
-            });
-
-            dialog.show();
-
-
-
+        if (view == proximo){
+            updatescore.Update_pontos(retorno_pontos,pontos);
+            recursos.ratingBar(getContext(),acertos);
         }
-        if (view == opcao_01)
-        {
+
+        if (view == opcao_01){
             erros++;
             evento_click.TrocarCorBotao3(opcao_01,opcao_02,opcao_03,opcao_04);
             evento_click.Desabilitar_botao(opcao_01,opcao_02,opcao_03,opcao_04,proximo);
         }
-        if (view == opcao_02)
-        {
+
+        if (view == opcao_02){
             erros++;
             evento_click.TrocarCorBotao3(opcao_01,opcao_02,opcao_03,opcao_04);
             evento_click.Desabilitar_botao(opcao_01,opcao_02,opcao_03,opcao_04,proximo);
         }
-        if (view == opcao_03)
-        {
+
+        if (view == opcao_03){
             acertos++;
 
             pontos = pontos +40;
@@ -148,8 +126,8 @@ public class Fragment_Atividade_5_10 extends Fragment implements View.OnClickLis
             evento_click.TrocarCorBotao3(opcao_01,opcao_02,opcao_03,opcao_04);
             evento_click.Desabilitar_botao(opcao_01,opcao_02,opcao_03,opcao_04,proximo);
         }
-        if (view == opcao_04)
-        {
+
+        if (view == opcao_04){
             erros++;
 
             evento_click.TrocarCorBotao3(opcao_01,opcao_02,opcao_03,opcao_04);

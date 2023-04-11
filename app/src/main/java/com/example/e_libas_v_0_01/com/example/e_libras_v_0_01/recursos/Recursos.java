@@ -3,6 +3,7 @@ package com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.recursos;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -11,10 +12,11 @@ import com.example.e_libas_v_0_01.R;
 
 public class Recursos {
 
-    public void ratingBar(Context context, int acertos){
 
-        final RatingBar ratingBar = new RatingBar(context);
-        final LinearLayout layout = new LinearLayout(context);
+    public void ratingBar(final Context context, int acertos){
+
+        RatingBar ratingBar = new RatingBar(context);
+        LinearLayout layout = new LinearLayout(context);
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
@@ -40,6 +42,8 @@ public class Recursos {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+                Fragment fragment = new Fragment();
+                fragment.getActivity().finish();
             }
         });
         builder.show();
@@ -60,4 +64,5 @@ public class Recursos {
         }
         return mensagem;
     }
+
 }
