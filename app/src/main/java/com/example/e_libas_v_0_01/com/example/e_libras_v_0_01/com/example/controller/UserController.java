@@ -24,7 +24,6 @@ import java.util.ArrayList;
 
 
 public class UserController {
-
     FirebaseAuth firebaseAuth;
     DatabaseReference reference,databaseReference ;
     Query query = FirebaseDatabase.getInstance().getReference("Userscore").orderByChild("pontos").limitToLast(10);
@@ -135,6 +134,31 @@ public class UserController {
             }
         });
 
+    }
+
+    public TextView retornoNivelPontos(final TextView view){
+
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Userscore").child(user.getUid());
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String nivel = dataSnapshot.child("nivel").getValue().toString();
+                String pontos = dataSnapshot.child("pontos").getValue().toString();
+
+                view.setText("Nv: "+nivel+ " - Pontos: "+pontos);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        return view;
     }
 }
 

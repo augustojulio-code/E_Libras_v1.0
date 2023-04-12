@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import com.example.e_libas_v_0_01.R;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.Evento_Botao.Evento_Firebase;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.Evento_Botao.Manipula_Button;
+import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.recursos.Recursos;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +36,7 @@ public class Fragment_Atividade_4_4 extends Fragment implements View.OnClickList
     DatabaseReference databaseReference;
     FirebaseAuth firebaseAuth;
     int retorno_pontos;
+    Recursos recursos= new Recursos();
 
     @Nullable
     @Override
@@ -100,31 +102,10 @@ public class Fragment_Atividade_4_4 extends Fragment implements View.OnClickList
 
             evento_click.Desabilitar_botao(opcao01,opcao02,opcao03,opcao04,btn_next);
         }
-        if (view == btn_next)
-        {
-            StringBuffer buffer = new StringBuffer();
+        if (view == btn_next) {
 
-            buffer.append("Acertos: "+acertos+"\n");
-            buffer.append("Erros  : "+erros+"\n");
-
-            AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-
-            dialog.setTitle("Parabéns");
-            dialog.setMessage(buffer);
-            dialog.setIcon(R.mipmap.elibraslogo);
-            dialog.setPositiveButton("OK", new DialogInterface.OnClickListener()
-            {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i)
-                {
-                    updatescore.Update_pontos(retorno_pontos,pontos);
-                    getActivity().finish();
-
-                    dialogInterface.dismiss();
-                }
-            });
-
-            dialog.show();
+            updatescore.Update_pontos(retorno_pontos,pontos);
+            recursos.ratingBar(getContext(),acertos);
         }
     }
 

@@ -38,9 +38,9 @@ public class MainFramentDasboard extends Fragment
     {
         View view = inflater.inflate(R.layout.fragment_dashboard,container,false);
 
-        progressBar = (ProgressBar) view.findViewById(R.id.dashboardpb);
-        viewpontos = (TextView) view.findViewById(R.id.dashboardpontos);
-        viewnivel = (TextView) view.findViewById(R.id.dashboardniveluser);
+        progressBar =  view.findViewById(R.id.dashboardpb);
+        viewpontos =  view.findViewById(R.id.dashboardpontos);
+        viewnivel =  view.findViewById(R.id.dashboardniveluser);
 
 
 

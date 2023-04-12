@@ -36,7 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainFragmentHome extends Fragment implements View.OnClickListener {
 
-    TextView nickname;
+    TextView nickname, txtHomeNivel;
 
     Button atividade, atividade2, atividade3, atividade4, atividade5, atividade6,atividade7;
     UserController controller = new UserController();
@@ -50,7 +50,7 @@ public class MainFragmentHome extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_home,container, false);
 
         nickname = view.findViewById(R.id.txthomeusuario);
-
+        txtHomeNivel = view.findViewById(R.id.txtHomeNivel);
 
          atividade = view.findViewById(R.id.botao_atividade);
          atividade2 = view.findViewById(R.id.botao_atividade_2);
@@ -79,7 +79,7 @@ public class MainFragmentHome extends Fragment implements View.OnClickListener {
         super.onStart();
 
         controller.nickReturn(nickname);
-
+        controller.retornoNivelPontos(txtHomeNivel);
         controller.buttonEnableReturn(atividade6);
         controller.buttonEnableReturn(atividade7);
 
