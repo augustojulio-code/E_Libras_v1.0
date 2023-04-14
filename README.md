@@ -17,8 +17,29 @@
 </p>
 
 
+
+## Wireframe da aplicação 
+
+<p align= "left">
+<img src="https://github.com/augustojulio-code/WireframeRepository/blob/master/E_libras/WireSplashScreen.PNG" width = 162px />
+<img src="https://github.com/augustojulio-code/WireframeRepository/blob/master/E_libras/WireRegisterScreen.PNG" width = 160px />
+<img src="https://github.com/augustojulio-code/WireframeRepository/blob/master/E_libras/WireLoginScreen.PNG" width = 162px/>
+<img src="https://github.com/augustojulio-code/WireframeRepository/blob/master/E_libras/WireHomeScreen.PNG" width = 162px />
+</p>
+
+<p align= "left">
+<img src="https://github.com/augustojulio-code/WireframeRepository/blob/master/E_libras/WireDashboardScreen.PNG" width = 162px />
+<img src="https://github.com/augustojulio-code/WireframeRepository/blob/master/E_libras/WireAlfabetoScreen.PNG" width = 162px />
+<img src="https://github.com/augustojulio-code/WireframeRepository/blob/master/E_libras/WireRankingScreen.PNG" width = 162px/>
+<img src="https://github.com/augustojulio-code/WireframeRepository/blob/master/E_libras/WireOptionsScreen.PNG" width = 162px />
+</p>
+
+<p align= "left">
+<img src="https://github.com/augustojulio-code/WireframeRepository/blob/master/E_libras/WireHomeScreen.PNG" width = 162px />
+<img src="https://github.com/augustojulio-code/WireframeRepository/blob/master/E_libras/WireSplashGifScreen.PNG" width = 162px />
+<img src="https://github.com/augustojulio-code/WireframeRepository/blob/master/E_libras/WireStudyScreen.PNG" width = 162px/>
+<img src="https://github.com/augustojulio-code/WireframeRepository/blob/master/E_libras/WireActivityScreen.PNG" width = 162px />
+</p>
+
 ### Voce pode me encontrar no Linkedin: <a href="https://www.linkedin.com/in/julio-augusto-a99308119/"><img src="https://media1.giphy.com/media/HQTYdpx1yhxWpugAi2/giphy.gif?cid=ecf05e475wvxroh7lso1o43rzmla6dixesq4ozeuow979u1j&rid=giphy.gif&ct=s" width=50> 
   </a>
-
-
-
