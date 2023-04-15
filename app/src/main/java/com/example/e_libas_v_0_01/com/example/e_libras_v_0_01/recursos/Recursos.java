@@ -54,7 +54,7 @@ public class Recursos {
         String mensagem;
         if(acertos == 0 || acertos <=2){
 
-            mensagem="Precisa Melhorar"; // voce pode melhorar, continue tentanto ...
+            mensagem="Continue tentando :D"; // voce pode melhorar, continue tentanto ...
         }
         else if(acertos==3 || acertos ==4){
             mensagem ="Muito bem";
