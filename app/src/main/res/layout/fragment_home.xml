@@ -112,8 +112,8 @@
 
                    <Button
                        android:id="@+id/botao_atividade"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
+                       android:layout_width="420px"
+                       android:layout_height="130px"
                        android:text="começar"
                        android:textSize="25dp"
                        android:background="@drawable/button_custom01"
@@ -188,8 +188,8 @@
 
                     <Button
                         android:id="@+id/botao_atividade_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="420px"
+                        android:layout_height="130px"
                         android:text="começar"
                         android:textSize="25dp"
                         android:background="@drawable/button_custom01"
@@ -264,8 +264,8 @@
 
                     <Button
                         android:id="@+id/botao_atividade_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="420px"
+                        android:layout_height="130px"
                         android:text="começar"
                         android:textSize="25dp"
                         android:background="@drawable/button_custom01"
@@ -340,8 +340,8 @@
 
                     <Button
                         android:id="@+id/botao_atividade_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="420px"
+                        android:layout_height="130px"
                         android:text="começar"
                         android:textSize="25dp"
                         android:background="@drawable/button_custom01"
@@ -416,8 +416,8 @@
 
                     <Button
                         android:id="@+id/botao_atividade_5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="420px"
+                        android:layout_height="130px"
                         android:text="começar"
                         android:textSize="25dp"
                         android:background="@drawable/button_custom01"
@@ -506,8 +506,8 @@
 
                     <Button
                         android:id="@+id/botao_atividade_6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="420px"
+                        android:layout_height="130px"
                         android:text="começar"
                         android:textSize="25dp"
                         android:background="@drawable/button_custom02"
@@ -583,8 +583,8 @@
 
                     <Button
                         android:id="@+id/botao_atividade_7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="420px"
+                        android:layout_height="130px"
                         android:text="começar"
                         android:textSize="25dp"
                         android:background="@drawable/button_custom02"
