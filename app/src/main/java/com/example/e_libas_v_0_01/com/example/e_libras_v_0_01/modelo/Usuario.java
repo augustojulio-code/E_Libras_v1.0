@@ -4,9 +4,15 @@ public class Usuario
 {
     public String nome, email, apelido, idUsuario;
 
-    public Usuario()
-    {
+    public Usuario(){
 
+    }
+
+    public Usuario(String nome, String email, String apelido, String id) {
+        this.idUsuario = id;
+        this.nome = nome;
+        this.email = email;
+        this.apelido = apelido;
     }
 
     public String getNome() {
@@ -41,13 +47,7 @@ public class Usuario
         this.idUsuario = idUsuario;
     }
 
-    public Usuario(String nome, String email, String apelido, String id)
-    {
-        this.idUsuario = id;
-        this.nome = nome;
-        this.email = email;
-        this.apelido = apelido;
-    }
+
 
     public String toString()
     {

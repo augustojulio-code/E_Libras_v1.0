@@ -1,14 +1,20 @@
 package com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.controller;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import android.support.annotation.Nullable;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Userscore;
+import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Usuario;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -21,12 +27,14 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.concurrent.Executor;
 
 
 public class UserController {
     FirebaseAuth firebaseAuth;
     DatabaseReference reference,databaseReference ;
     Query query = FirebaseDatabase.getInstance().getReference("Userscore").orderByChild("pontos").limitToLast(10);
+    UserscoreController controller = new UserscoreController();
 
 
     public TextView nickReturn(final TextView view){
@@ -159,6 +167,53 @@ public class UserController {
         });
 
         return view;
+    }
+
+    public void registerUserAuth(final Usuario userData, String senha){
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        try {
+
+            firebaseAuth.createUserWithEmailAndPassword(userData.getEmail(),senha)
+                    .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()){
+
+                                registerUser(userData);
+
+                            }
+
+                        }
+                    });
+
+        }
+        catch (Exception e){
+
+            System.out.println(e);
+        }
+    }
+
+    public void registerUser(final Usuario usuario){
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Usuario").child(user.getUid());
+
+        databaseReference.setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+
+                    Userscore userscore = new Userscore(usuario.getApelido(),1,0);
+                    controller.registerScore(userscore);
+
+                }
+            }
+        });
+
     }
 }
 

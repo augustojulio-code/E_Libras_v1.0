@@ -10,6 +10,12 @@ public class Userscore
 
     }
 
+    public Userscore(String apelido, int pontos, int nivel) {
+        this.apelido = apelido;
+        this.pontos = pontos;
+        this.nivel = nivel;
+    }
+
     public String getApelido() {
         return apelido;
     }
