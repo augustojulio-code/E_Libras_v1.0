@@ -11,9 +11,9 @@
 
 ## Tecnologias utilizadas
 <p align= "left">
-<img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=oracle&logoColor=white"/>
-<img src="https://img.shields.io/badge/Firebase-005C84?style=for-the-badge&logo=google&logoColor=green"/>
-<img src="https://img.shields.io/badge/XML-239120?style=for-the-badge&logo=w3c&logoColor=blue"/>
+- Java 
+- xml (front-end)
+- Firebase
 </p>
 
 
