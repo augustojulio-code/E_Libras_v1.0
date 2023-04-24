@@ -10,11 +10,9 @@
 
 
 ## Tecnologias utilizadas
-<p align= "left">
-- Java 
-- xml (front-end)
-- Firebase
-</p>
+* Java 
+* xml (front-end)
+* Firebase
 
 
 
