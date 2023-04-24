@@ -10,9 +10,9 @@
 
 
 ## Tecnologias utilizadas
-* Java 
-* xml (front-end)
-* Firebase
+* <h4>Java</h4> 
+* <h4>xml (front-end)</h4>
+* <h4>Firebase</h4>
 
 
 
