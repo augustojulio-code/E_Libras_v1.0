@@ -16,7 +16,7 @@
 
 
 
-## Wireframe da aplicação 
+## Layout das telas 
 
 <p align= "left">
 <img src="https://github.com/augustojulio-code/WireframeRepository/blob/master/E_libras/WireSplashScreen.PNG" width = 162px />
