@@ -16,9 +16,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.e_libas_v_0_01.R;
-import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.Evento_Botao.Evento_Firebase;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Perguntas;
-import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Respostas;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,7 +28,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 public class MainFragmentComunity extends Fragment implements View.OnClickListener

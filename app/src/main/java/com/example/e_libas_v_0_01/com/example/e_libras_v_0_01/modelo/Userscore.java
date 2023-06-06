@@ -2,8 +2,8 @@ package com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo;
 
 public class Userscore
 {
-    public String apelido ;
-    public int pontos, nivel;
+    private String apelido ;
+    private int pontos, nivel;
 
     public Userscore()
     {

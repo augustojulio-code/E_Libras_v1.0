@@ -7,12 +7,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 
-import com.example.e_libas_v_0_01.ActivitySlides;
 import com.example.e_libas_v_0_01.MainFragmentMenu;
 import com.example.e_libas_v_0_01.R;
 

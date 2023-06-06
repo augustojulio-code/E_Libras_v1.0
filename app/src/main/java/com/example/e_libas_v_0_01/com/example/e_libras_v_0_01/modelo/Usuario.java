@@ -2,7 +2,7 @@ package com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo;
 
 public class Usuario
 {
-    public String nome, email, apelido, idUsuario;
+    private String nome, email, apelido, idUsuario;
 
     public Usuario(){
 

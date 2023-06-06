@@ -9,12 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.example.e_libas_v_0_01.Atividade_01;
-import com.example.e_libas_v_0_01.MainActivity;
 import com.example.e_libas_v_0_01.Previa_Atividade_1;
 import com.example.e_libas_v_0_01.Previa_Atividade_2;
 import com.example.e_libas_v_0_01.Previa_Atividade_3;
@@ -22,17 +18,9 @@ import com.example.e_libas_v_0_01.Previa_Atividade_4;
 import com.example.e_libas_v_0_01.Previa_Atividade_5;
 import com.example.e_libas_v_0_01.Previa_Atividade_7;
 import com.example.e_libas_v_0_01.Previa_atividade_6;
-import com.example.e_libas_v_0_01.ProfileLogin;
 import com.example.e_libas_v_0_01.R;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.controller.UserController;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+
 
 public class MainFragmentHome extends Fragment implements View.OnClickListener {
 

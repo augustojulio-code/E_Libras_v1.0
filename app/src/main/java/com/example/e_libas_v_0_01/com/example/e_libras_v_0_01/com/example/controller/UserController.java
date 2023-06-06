@@ -1,13 +1,11 @@
 package com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.controller;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import android.support.annotation.Nullable;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Userscore;

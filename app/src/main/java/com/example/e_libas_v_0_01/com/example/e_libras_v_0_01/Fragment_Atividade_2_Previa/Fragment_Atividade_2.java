@@ -13,7 +13,6 @@ import android.widget.ImageView;
 
 import com.example.e_libas_v_0_01.R;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.Evento_Botao.Manipula_Button;
-import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.Fragment_Atividades_01.Fragment_Atividade_2_10;
 
 public class Fragment_Atividade_2 extends Fragment implements View.OnClickListener
 {

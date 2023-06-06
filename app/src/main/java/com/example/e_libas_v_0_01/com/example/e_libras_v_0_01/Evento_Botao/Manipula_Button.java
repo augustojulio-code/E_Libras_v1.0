@@ -1,8 +1,5 @@
 package com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.Evento_Botao;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.widget.Button;
 import android.widget.ImageView;
 
