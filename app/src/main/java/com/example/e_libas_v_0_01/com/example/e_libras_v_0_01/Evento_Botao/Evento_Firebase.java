@@ -41,7 +41,7 @@ public class Evento_Firebase
             {
                 if (task.isSuccessful())
                 {
-
+                    return;
                 }
             }
         });

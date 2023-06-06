@@ -2,6 +2,7 @@ package com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.Fragment_Atividad
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.e_libas_v_0_01.MainFragmentMenu;
+import com.example.e_libas_v_0_01.Previa_Atividade_7;
 import com.example.e_libas_v_0_01.R;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.Evento_Botao.Evento_Firebase;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.Evento_Botao.Manipula_Button;
@@ -110,6 +113,9 @@ public class Fragment_Atividade_7_4 extends Fragment implements View.OnClickList
 
             updatescore.Update_pontos(retorno_pontos,pontos);
             recursos.ratingBar(getContext(),acertos);
+
+            //recursos.sleepTime(Fragment_Atividade_7_4.this);
+
         }
     }
 

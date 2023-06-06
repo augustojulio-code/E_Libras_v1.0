@@ -1,13 +1,19 @@
 package com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.recursos;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 
+import com.example.e_libas_v_0_01.ActivitySlides;
+import com.example.e_libas_v_0_01.MainFragmentMenu;
 import com.example.e_libas_v_0_01.R;
 
 public class Recursos {
@@ -43,7 +49,9 @@ public class Recursos {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 Fragment fragment = new Fragment();
-                fragment.getActivity().finish();
+                Activity activity = new Activity();
+                activity.startActivity(new Intent(fragment.getContext(), MainFragmentMenu.class));
+
             }
         });
         builder.show();
@@ -65,6 +73,16 @@ public class Recursos {
         return mensagem;
     }
 
+    public void sleepTime(final Fragment fragment){
+        new Handler().postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
 
+
+            }
+        },2500);
+    }
 
 }
