@@ -106,7 +106,7 @@ public class Fragment_Atividade_6_4 extends Fragment implements View.OnClickList
         if (view == btn_next) {
 
             updatescore.Update_pontos(retorno_pontos,pontos);
-            recursos.ratingBar(getContext(),acertos);
+            recursos.ratingBar(Fragment_Atividade_6_4.this,acertos);
         }
     }
 

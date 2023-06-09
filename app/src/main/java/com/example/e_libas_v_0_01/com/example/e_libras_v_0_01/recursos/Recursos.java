@@ -17,11 +17,11 @@ import com.example.e_libas_v_0_01.R;
 public class Recursos {
 
 
-    public void ratingBar(final Context context, int acertos){
+    public void ratingBar(final Fragment context, int acertos){
 
-        RatingBar ratingBar = new RatingBar(context);
-        LinearLayout layout = new LinearLayout(context);
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        RatingBar ratingBar = new RatingBar(context.getContext());
+        LinearLayout layout = new LinearLayout(context.getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(context.getContext());
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -46,9 +46,8 @@ public class Recursos {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                Fragment fragment = new Fragment();
-                Activity activity = new Activity();
-                activity.startActivity(new Intent(fragment.getContext(), MainFragmentMenu.class));
+
+                context.startActivity(new Intent(context.getContext(),MainFragmentMenu.class));
 
             }
         });
@@ -78,9 +77,9 @@ public class Recursos {
             public void run()
             {
 
-
+            fragment.startActivity(new Intent(fragment.getContext(), MainFragmentMenu.class));
             }
-        },2500);
+        },3000);
     }
 
 }

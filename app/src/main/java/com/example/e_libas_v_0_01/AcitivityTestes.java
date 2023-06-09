@@ -33,7 +33,7 @@ public class AcitivityTestes extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                 recursos.ratingBar(context,3);
+                 //recursos.ratingBar(context,3);
 
 
             }
