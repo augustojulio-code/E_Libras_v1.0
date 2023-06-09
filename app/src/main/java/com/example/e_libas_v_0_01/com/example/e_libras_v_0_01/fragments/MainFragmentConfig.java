@@ -10,34 +10,24 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.e_libas_v_0_01.ActivityAjuda;
 import com.example.e_libas_v_0_01.Conta_Usuario;
 import com.example.e_libas_v_0_01.LoginActivity;
-import com.example.e_libas_v_0_01.MainActivity;
 import com.example.e_libas_v_0_01.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class MainFragmentConfig extends Fragment
 {
 
     FirebaseAuth firebaseAuth;
-    Button sair;
-    TextView web, conta, faq, congiguracao;
-    String[] confMenu = {"Conta","Sobre E-Libras","FAQ Comunidade","Ajuda","Sair"};
+    String[] confMenu = {"Conta","Sobre E-Libras","Comunidade","FAQ. Ajuda","Sair"};
     int[] imagens = {R.mipmap.ic_conta,R.mipmap.ic_web2, R.mipmap.ic_pergunta,R.mipmap.ic_info,R.mipmap.ic_logout};
 
     @Nullable
