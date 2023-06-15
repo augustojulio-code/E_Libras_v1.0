@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.controller.UserController;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Userscore;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,6 +36,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth firebaseAuth;
 
     private DatabaseReference databaseReference;
+
+    private Usuario user = new Usuario();
+
+    private UserController controller = new UserController();
 
 
     @Override
@@ -77,8 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-    private void registerUser()
-    {
+    private void registerUser(){
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Usuario");
 
@@ -118,8 +122,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                            progressDialog.setMessage("Registrando Usuário...");
                            progressDialog.show();
 
+                           user.setEmail(email);
+                           user.setApelido(apelido);
+                           user.setNome(nome);
+                           user.setIdUsuario(firebaseAuth.getUid());
 
-                           firebaseAuth.createUserWithEmailAndPassword(email, senha)
+                           controller.registerUserAuth(user,senha);
+
+                           /*firebaseAuth.createUserWithEmailAndPassword(email, senha)
                                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
                                    {
                                        @Override
@@ -199,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                            }
                                        }
-                                   });
+                                   });*/
                        }
                        else
                        {

@@ -167,13 +167,13 @@ public class UserController {
         return view;
     }
 
-    public void registerUserAuth(final Usuario userData, String senha){
+    public void registerUserAuth(final Usuario userData, String userpassword){
 
         firebaseAuth = FirebaseAuth.getInstance();
 
         try {
 
-            firebaseAuth.createUserWithEmailAndPassword(userData.getEmail(),senha)
+            firebaseAuth.createUserWithEmailAndPassword(userData.getEmail(),userpassword)
                     .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
