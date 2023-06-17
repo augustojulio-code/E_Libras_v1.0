@@ -1,20 +1,15 @@
 package com.example.e_libas_v_0_01;
 
-import android.content.Context;
-import android.content.DialogInterface;
+
+import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RatingBar;
 import android.widget.Toast;
 
-import com.example.e_libas_v_0_01.R;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.controller.UserController;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Usuario;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.recursos.Recursos;
@@ -24,11 +19,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.concurrent.Executor;
 
 public class AcitivityTestes extends AppCompatActivity {
 
-    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +30,7 @@ public class AcitivityTestes extends AppCompatActivity {
 
         Button button = findViewById(R.id.botao_test);
         final UserController userController = new UserController();
-
+        final Recursos recursos = new Recursos();
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,11 +43,17 @@ public class AcitivityTestes extends AppCompatActivity {
                 usuario.setApelido("apelidoteste");
 
                 userController.registerUserAuth(usuario,"123456");
+
             }
         });
 
 
 
 
+    }
+
+    public String text(){
+
+        return "OK!!!!!!!!";
     }
 }

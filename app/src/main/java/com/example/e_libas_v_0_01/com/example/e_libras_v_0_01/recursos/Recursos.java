@@ -70,16 +70,16 @@ public class Recursos {
         return mensagem;
     }
 
-    public void sleepTime(final Fragment fragment){
+    public void sleepTime(){
         new Handler().postDelayed(new Runnable()
         {
             @Override
             public void run()
             {
-
-            fragment.startActivity(new Intent(fragment.getContext(), MainFragmentMenu.class));
             }
-        },3000);
+        },1000);
     }
+
+
 
 }

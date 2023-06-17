@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.e_libas_v_0_01.AcitivityTestes;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Userscore;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Usuario;
+import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.recursos.Recursos;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -36,7 +37,7 @@ public class UserController {
     DatabaseReference reference,databaseReference ;
     Query query = FirebaseDatabase.getInstance().getReference("Userscore").orderByChild("pontos").limitToLast(10);
     UserscoreController controller = new UserscoreController();
-
+    Recursos recursos = new Recursos();
 
     public TextView nickReturn(final TextView view){
 
@@ -175,16 +176,15 @@ public class UserController {
         firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
 
-
-                firebaseAuth.createUserWithEmailAndPassword(userData.getEmail(),userpassword)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            firebaseAuth.createUserWithEmailAndPassword(userData.getEmail(),userpassword)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                recursos.sleepTime();
 
                                 userData.setIdUsuario(user.getUid());
 
                                 if (task.isSuccessful()){
-
 
                                     registerUser(userData);
                                     return;
@@ -193,21 +193,11 @@ public class UserController {
 
                             }
                         });
-
-
-
-
-
-
-
-
     }
 
     public void registerUser(final Usuario usuario){
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Usuario").child(usuario.getIdUsuario());
-
-
 
         try {
 
@@ -219,7 +209,7 @@ public class UserController {
 
                     if(task.isSuccessful()){
 
-                        //controller.registerScore(userscore);
+                        controller.registerScore(userscore);
                         return;
                     }
                 }
