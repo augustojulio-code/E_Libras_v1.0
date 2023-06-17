@@ -2,6 +2,7 @@ package com.example.e_libas_v_0_01;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,13 @@ import com.example.e_libas_v_0_01.R;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.controller.UserController;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Usuario;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.recursos.Recursos;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.concurrent.Executor;
 
 public class AcitivityTestes extends AppCompatActivity {
 
@@ -40,13 +48,12 @@ public class AcitivityTestes extends AppCompatActivity {
                 usuario.setNome("teste");
                 usuario.setEmail("teste54321@gmail.com");
                 usuario.setApelido("apelidoteste");
+
                 userController.registerUserAuth(usuario,"123456");
-
-                Toast.makeText(AcitivityTestes.this,"Deu certo",Toast.LENGTH_LONG).show();
-
-
             }
         });
+
+
 
 
     }

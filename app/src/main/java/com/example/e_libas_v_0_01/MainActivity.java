@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -48,13 +49,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        /*firebaseAuth = FirebaseAuth.getInstance();
 
         if (firebaseAuth.getCurrentUser()!= null)
         {
             finish();
             startActivity(new Intent(getApplicationContext(),MainFragmentMenu.class));
-        }
+        }*/
 
        progressDialog = new ProgressDialog(this);
 
@@ -84,11 +85,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void registerUser(){
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Usuario");
+        //databaseReference = FirebaseDatabase.getInstance().getReference("Usuario");
 
         final String email = edtemail.getText().toString().trim();
-        String senha = edtsenha.getText().toString().trim();
-        String confirma_senha = edtconfirmasenha.getText().toString().trim();
+        final String senha = edtsenha.getText().toString().trim();
+        final String confirma_senha = edtconfirmasenha.getText().toString().trim();
         final String nome = edtnome.getText().toString().trim();
         final String apelido = edtapelido.getText().toString().trim();
         final int nivel = Integer.parseInt(edtnivel.getText().toString().trim());
@@ -119,15 +120,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                    {
                        if (senha.equals(confirma_senha))
                        {
-                           //progressDialog.setMessage("Registrando Usuário...");
-                           //progressDialog.show();
 
-                           user.setEmail(email);
-                           user.setApelido(apelido);
-                           user.setNome(nome);
-                           user.setIdUsuario(firebaseAuth.getUid());
+                           //Toast.makeText(MainActivity.this,"OK!!!!!!!!!!", Toast.LENGTH_LONG).show();
 
-                           controller.registerUserAuth(user,senha);
+                          // progressDialog.setMessage("Registrando Usuário...");
+                          // progressDialog.show();
+
+                           user.setEmail("TESTEUI@gmail.com");
+                           user.setApelido("TESTEUI");
+                           user.setNome("TESTEUI");
+                           //user.setIdUsuario("Teste");
+
+                           //controller.registerUser(user);
+                           controller.registerUserAuth(user,"123456");
+
+
+
+                          //progressDialog.dismiss();
 
                            /*firebaseAuth.createUserWithEmailAndPassword(email, senha)
                                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()

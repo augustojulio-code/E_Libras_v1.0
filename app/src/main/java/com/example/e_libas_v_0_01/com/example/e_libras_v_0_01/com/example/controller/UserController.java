@@ -1,5 +1,6 @@
 package com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.controller;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.e_libas_v_0_01.AcitivityTestes;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Userscore;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -172,32 +174,38 @@ public class UserController {
 
         firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
-        try {
 
-            firebaseAuth.createUserWithEmailAndPassword(userData.getEmail(),userpassword)
-                    .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
+
+                firebaseAuth.createUserWithEmailAndPassword(userData.getEmail(),userpassword)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
 
                                 userData.setIdUsuario(user.getUid());
-                                registerUser(userData);
+
+                                if (task.isSuccessful()){
+
+
+                                    registerUser(userData);
+                                    return;
+
+                                }
 
                             }
+                        });
 
-                        }
-                    });
 
-        }
-        catch (Exception e){
 
-            System.out.println("ALGO DEU ERRADO LOGIN"+e);
-        }
+
+
+
+
+
     }
 
-    public void registerUser(Usuario usuario){
+    public void registerUser(final Usuario usuario){
 
-        /*databaseReference = FirebaseDatabase.getInstance().getReference("Usuario").child(user.getUid());
+        databaseReference = FirebaseDatabase.getInstance().getReference("Usuario").child(usuario.getIdUsuario());
 
 
 
@@ -206,11 +214,13 @@ public class UserController {
             databaseReference.setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
+
+                    Userscore userscore = new Userscore(usuario.getApelido(),0,1);
+
                     if(task.isSuccessful()){
 
-                        //Userscore userscore = new Userscore(usuario.getApelido(),1,0);
                         //controller.registerScore(userscore);
-                    return;
+                        return;
                     }
                 }
             });
@@ -218,9 +228,9 @@ public class UserController {
         catch (Exception e){
 
             System.out.println("ALGO DEU ERRADO CADASTRO USER"+ e);
-        }*/
+        }
 
-        System.out.println("FUNCIONOU");
+
     }
 }
 
