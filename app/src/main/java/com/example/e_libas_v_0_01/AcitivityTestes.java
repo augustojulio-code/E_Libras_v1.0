@@ -14,6 +14,8 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.example.e_libas_v_0_01.R;
+import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.controller.UserController;
+import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Usuario;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.recursos.Recursos;
 
 public class AcitivityTestes extends AppCompatActivity {
@@ -25,15 +27,22 @@ public class AcitivityTestes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acitivity_testes);
 
-        final Recursos recursos = new Recursos();
         Button button = findViewById(R.id.botao_test);
+        final UserController userController = new UserController();
 
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                 //recursos.ratingBar(context,3);
+                Usuario usuario = new Usuario();
+                //usuario.setIdUsuario("teste");
+                usuario.setNome("teste");
+                usuario.setEmail("teste54321@gmail.com");
+                usuario.setApelido("apelidoteste");
+                userController.registerUserAuth(usuario,"123456");
+
+                Toast.makeText(AcitivityTestes.this,"Deu certo",Toast.LENGTH_LONG).show();
 
 
             }

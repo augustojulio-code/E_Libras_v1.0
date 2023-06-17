@@ -119,8 +119,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                    {
                        if (senha.equals(confirma_senha))
                        {
-                           progressDialog.setMessage("Registrando Usuário...");
-                           progressDialog.show();
+                           //progressDialog.setMessage("Registrando Usuário...");
+                           //progressDialog.show();
 
                            user.setEmail(email);
                            user.setApelido(apelido);

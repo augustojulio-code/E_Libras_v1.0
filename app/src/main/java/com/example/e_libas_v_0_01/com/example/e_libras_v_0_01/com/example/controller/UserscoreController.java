@@ -29,15 +29,22 @@ public class UserscoreController {
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Userscore").child(user.getUid());
 
-        reference.setValue(userscore).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+        try {
+            reference.setValue(userscore).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
 
-                    return;
+                        return;
+                    }
                 }
-            }
-        });
+            });
+        }
+        catch (Exception e){
+            System.out.println("ALGO DEU ERRADO SCORE"+ e);
+        }
+
+
 
     }
 

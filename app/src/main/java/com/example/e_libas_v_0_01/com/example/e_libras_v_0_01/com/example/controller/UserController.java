@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Userscore;
@@ -170,7 +171,7 @@ public class UserController {
     public void registerUserAuth(final Usuario userData, String userpassword){
 
         firebaseAuth = FirebaseAuth.getInstance();
-
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
         try {
 
             firebaseAuth.createUserWithEmailAndPassword(userData.getEmail(),userpassword)
@@ -179,6 +180,7 @@ public class UserController {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
 
+                                userData.setIdUsuario(user.getUid());
                                 registerUser(userData);
 
                             }
@@ -189,29 +191,36 @@ public class UserController {
         }
         catch (Exception e){
 
-            System.out.println(e);
+            System.out.println("ALGO DEU ERRADO LOGIN"+e);
         }
     }
 
-    public void registerUser(final Usuario usuario){
+    public void registerUser(Usuario usuario){
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        final FirebaseUser user = firebaseAuth.getCurrentUser();
+        /*databaseReference = FirebaseDatabase.getInstance().getReference("Usuario").child(user.getUid());
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Usuario").child(user.getUid());
 
-        databaseReference.setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
 
-                    Userscore userscore = new Userscore(usuario.getApelido(),1,0);
-                    controller.registerScore(userscore);
+        try {
 
+            databaseReference.setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+
+                        //Userscore userscore = new Userscore(usuario.getApelido(),1,0);
+                        //controller.registerScore(userscore);
+                    return;
+                    }
                 }
-            }
-        });
+            });
+        }
+        catch (Exception e){
 
+            System.out.println("ALGO DEU ERRADO CADASTRO USER"+ e);
+        }*/
+
+        System.out.println("FUNCIONOU");
     }
 }
 
