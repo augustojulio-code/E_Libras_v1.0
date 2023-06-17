@@ -174,14 +174,14 @@ public class UserController {
     public void registerUserAuth(final Usuario userData, String userpassword){
 
         firebaseAuth = FirebaseAuth.getInstance();
-        final FirebaseUser user = firebaseAuth.getCurrentUser();
+
 
             firebaseAuth.createUserWithEmailAndPassword(userData.getEmail(),userpassword)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 recursos.sleepTime();
-
+                                FirebaseUser user = firebaseAuth.getCurrentUser();
                                 userData.setIdUsuario(user.getUid());
 
                                 if (task.isSuccessful()){
@@ -196,6 +196,7 @@ public class UserController {
     }
 
     public void registerUser(final Usuario usuario){
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Usuario").child(usuario.getIdUsuario());
 

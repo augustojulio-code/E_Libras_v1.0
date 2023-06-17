@@ -77,7 +77,7 @@ public class Recursos {
             public void run()
             {
             }
-        },1000);
+        },3000);
     }
 
 

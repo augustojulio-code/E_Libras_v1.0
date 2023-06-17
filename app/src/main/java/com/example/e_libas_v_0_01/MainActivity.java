@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.*;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.controller.UserController;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Userscore;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Usuario;
+import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.recursos.Recursos;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ProgressDialog progressDialog;
 
-    private FirebaseAuth firebaseAuth;
+     FirebaseAuth firebaseAuth;
 
     private DatabaseReference databaseReference;
 
@@ -42,16 +44,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private UserController controller = new UserController();
 
-
+    Recursos recursos = new Recursos();
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*firebaseAuth = FirebaseAuth.getInstance();
+        //firebaseAuth = FirebaseAuth.getInstance();
 
-        if (firebaseAuth.getCurrentUser()!= null)
+        /*if (firebaseAuth.getCurrentUser()!= null)
         {
             finish();
             startActivity(new Intent(getApplicationContext(),MainFragmentMenu.class));
@@ -85,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void registerUser(){
 
-        //databaseReference = FirebaseDatabase.getInstance().getReference("Usuario");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Usuario");
 
         final String email = edtemail.getText().toString().trim();
         final String senha = edtsenha.getText().toString().trim();
@@ -121,24 +123,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                        if (senha.equals(confirma_senha))
                        {
 
-                           //Toast.makeText(MainActivity.this,"OK!!!!!!!!!!", Toast.LENGTH_LONG).show();
 
-                          // progressDialog.setMessage("Registrando Usuário...");
-                          // progressDialog.show();
-
-                           user.setEmail("TESTEUI@gmail.com");
-                           user.setApelido("TESTEUI");
-                           user.setNome("TESTEUI");
-                           //user.setIdUsuario("Teste");
-
-                           //controller.registerUser(user);
-                           controller.registerUserAuth(user,"123456");
-
-
-
-                          //progressDialog.dismiss();
-
-                           /*firebaseAuth.createUserWithEmailAndPassword(email, senha)
+                           firebaseAuth.createUserWithEmailAndPassword(email, senha)
                                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
                                    {
                                        @Override
@@ -218,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                            }
                                        }
-                                   });*/
+                                   });
                        }
                        else
                        {
