@@ -1,6 +1,7 @@
 package com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.controller;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 
 import com.example.e_libas_v_0_01.AcitivityTestes;
+import com.example.e_libas_v_0_01.LoginActivity;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Userscore;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Usuario;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.recursos.Recursos;
@@ -39,9 +41,14 @@ public class UserController {
     UserscoreController controller = new UserscoreController();
     Recursos recursos = new Recursos();
 
+    public UserController(){
+        firebaseAuth = FirebaseAuth.getInstance();
+    }
+
+
+
     public TextView nickReturn(final TextView view){
 
-        firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
 
         reference = FirebaseDatabase.getInstance().getReference("Usuario").child(user.getUid());
@@ -74,7 +81,6 @@ public class UserController {
 
     public TextView buttonEnableReturn(final Button button){
 
-        firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Userscore").child(user.getUid());
@@ -173,8 +179,6 @@ public class UserController {
 
     public void registerUserAuth(final Usuario userData, String userpassword){
 
-        firebaseAuth = FirebaseAuth.getInstance();
-
 
             firebaseAuth.createUserWithEmailAndPassword(userData.getEmail(),userpassword)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -223,6 +227,30 @@ public class UserController {
 
 
     }
+
+    public void UserLogin(String email, String password){
+
+        try{
+            firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        return;
+
+                    }
+                }
+            });
+        }
+        catch (Exception e){
+
+
+        }
+
+
+
+
+    }
+
 }
 
 

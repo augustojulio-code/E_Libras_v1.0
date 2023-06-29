@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.controller.UserController;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -27,10 +28,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button login;
     private EditText txtedtemail,txtedtsenha;
     private TextView registrar, recuperarsenha;
-
+    private UserController controller = new UserController();
     private ProgressDialog barra;
 
-    private FirebaseAuth firebaseAuth;
 
     //Tratando as reduncias do Login
 
@@ -40,14 +40,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        /*if (firebaseAuth.getCurrentUser()!= null)
-        {
-            finish();
-            startActivity(new Intent(getApplicationContext(),ProfileLogin.class));
-        }*/
 
         barra = new ProgressDialog(this);
 
@@ -65,12 +57,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    private void verificauser()
-    {
+    private void verificauser() {
         String lemail = txtedtemail.getText().toString().trim();
         String lsenha = txtedtsenha.getText().toString().trim();
 
-        if(TextUtils.isEmpty(lemail)/* || TextUtils.isEmpty(senha)*/ )
+        if(TextUtils.isEmpty(lemail))
         {
             Toast.makeText(this,"Digite um email",Toast.LENGTH_LONG).show();
 
@@ -83,34 +74,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-        //barra.setMessage("Verificando Usuário");
-        //barra.show();
+        try{
+            controller.UserLogin(lemail,lsenha);
+            startActivity(new Intent(getApplicationContext(),MainFragmentMenu.class));
+        }
+        catch(Exception e){
+            Toast.makeText(LoginActivity.this,"Email ou senha Incorreto", Toast.LENGTH_LONG).show();
+        }
 
-        firebaseAuth.signInWithEmailAndPassword(lemail, lsenha)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task)
-                    {
-
-
-                        if (task.isSuccessful())
-                        {
-                            // Adicionar uma intenção
-                            //barra.dismiss();
-
-                            Toast.makeText(LoginActivity.this,"Logado",Toast.LENGTH_SHORT).show();
-
-                            finish();
-                            startActivity(new Intent(getApplicationContext(),MainFragmentMenu.class));
-                        }
-                        else
-                            {
-                                //Toast.makeText(this,"Deu Errado", Toast.LENGTH_LONG).show();
-                                //barra.dismiss();
-                                Toast.makeText(LoginActivity.this,"Email ou senha Incorreto", Toast.LENGTH_LONG).show();
-                            }
-                    }
-                });
     }
 
     @Override
@@ -178,7 +149,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         barra.setMessage("Aguarde");
         barra.show();
 
-        firebaseAuth.sendPasswordResetEmail(semail).addOnCompleteListener(new OnCompleteListener<Void>()
+        /*firebaseAuth.sendPasswordResetEmail(semail).addOnCompleteListener(new OnCompleteListener<Void>()
         {
             @Override
             public void onComplete(@NonNull Task<Void> task)
@@ -202,6 +173,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 barra.dismiss();
                 Toast.makeText(LoginActivity.this,""+e.getMessage(),Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
     }
 }
