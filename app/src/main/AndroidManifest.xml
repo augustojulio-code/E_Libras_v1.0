@@ -32,7 +32,11 @@
         <activity
             android:name=".SpashScreen"
             android:screenOrientation="locked">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity
@@ -42,12 +46,6 @@
         <activity android:name=".ProfileLogin" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity" >
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <meta-data

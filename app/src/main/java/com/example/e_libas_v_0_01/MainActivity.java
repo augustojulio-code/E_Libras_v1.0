@@ -3,8 +3,6 @@ package com.example.e_libas_v_0_01;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.*;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,16 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.controller.UserController;
-import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Userscore;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Usuario;
-import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.recursos.Recursos;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,33 +20,23 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
     private Button registrar;
-    private EditText edtemail, edtsenha, edtnome,edtapelido, edtnivel,edtpontos, edtconfirmasenha;
+    private EditText edtemail, edtsenha, edtnome,edtapelido, edtconfirmasenha;
     private TextView txtviewLogin;
 
     private ProgressDialog progressDialog;
 
-     FirebaseAuth firebaseAuth;
 
-    private DatabaseReference databaseReference;
 
-    private Usuario user = new Usuario();
+    private Usuario userR = new Usuario();
 
     private UserController controller = new UserController();
 
-    Recursos recursos = new Recursos();
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //firebaseAuth = FirebaseAuth.getInstance();
-
-        /*if (firebaseAuth.getCurrentUser()!= null)
-        {
-            finish();
-            startActivity(new Intent(getApplicationContext(),MainFragmentMenu.class));
-        }*/
 
        progressDialog = new ProgressDialog(this);
 
@@ -70,11 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         edtnome = findViewById(R.id.txtnomecompleto);
         edtapelido = findViewById(R.id.txtapelido);
-        edtnivel = findViewById(R.id.txtnivelusuario);
-        edtpontos = findViewById(R.id.txtpontosusuario);
 
-
-        txtviewLogin = (TextView) findViewById(R.id.txtviewsignin);
+        txtviewLogin = findViewById(R.id.txtviewsignin);
 
         registrar.setOnClickListener(this);
         txtviewLogin.setOnClickListener(this);
@@ -87,15 +63,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void registerUser(){
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Usuario");
-
         final String email = edtemail.getText().toString().trim();
         final String senha = edtsenha.getText().toString().trim();
         final String confirma_senha = edtconfirmasenha.getText().toString().trim();
         final String nome = edtnome.getText().toString().trim();
         final String apelido = edtapelido.getText().toString().trim();
-        final int nivel = Integer.parseInt(edtnivel.getText().toString().trim());
-        final int pontos = Integer.parseInt(edtpontos.getText().toString().trim());
 
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(senha) || TextUtils.isEmpty(nome) || TextUtils.isEmpty(apelido) || TextUtils.isEmpty(confirma_senha))
         {
@@ -122,89 +94,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                    {
                        if (senha.equals(confirma_senha))
                        {
+                            progressDialog.show();
 
+                            userR.setApelido(apelido);
+                            userR.setEmail(email);
+                            userR.setNome(nome);
 
-                           firebaseAuth.createUserWithEmailAndPassword(email, senha)
-                                   .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
-                                   {
-                                       @Override
-                                       public void onComplete(Task<AuthResult> task)
-                                       {
-                                           if(task.isSuccessful())
-                                           {
-                                               String id = firebaseAuth.getUid();
-                                               Usuario user = new Usuario();
+                            controller.registerUserAuth(userR, senha);
 
-                                               user.setNome(nome);
-                                               user.setEmail(email);
-                                               user.setApelido(apelido);
-                                               user.setIdUsuario(id);
+                            progressDialog.dismiss();
 
-                                               databaseReference
-                                                       .child(FirebaseAuth.getInstance()
-                                                               .getCurrentUser().getUid()).setValue(user)
-                                                       .addOnCompleteListener(new OnCompleteListener<Void>()
-                                                       {
-                                                           @Override
-                                                           public void onComplete(Task<Void> task)
-                                                           {
-                                                               if (task.isSuccessful())
-                                                               {
-
-                                                                   Userscore score = new Userscore();
-
-                                                                   score.setNivel(nivel);
-                                                                   score.setPontos(pontos);
-                                                                   score.setApelido(apelido);
-
-                                                                   FirebaseDatabase.getInstance().getReference("Userscore")
-                                                                           .child(FirebaseAuth.getInstance().getCurrentUser()
-                                                                                   .getUid()).setValue(score).addOnCompleteListener(new OnCompleteListener<Void>()
-                                                                   {
-                                                                       @Override
-                                                                       public void onComplete( Task<Void> task)
-                                                                       {
-                                                                           if (task.isSuccessful())
-                                                                           {
-                                                                               finish();
-                                                                               startActivity(new Intent(getApplicationContext(),MainFragmentMenu.class));
-
-                                                                               Toast.makeText(MainActivity.this,"Registrado com Sucesso", Toast.LENGTH_LONG).show();
-                                                                               progressDialog.dismiss();
-                                                                           }
-                                                                           else
-                                                                           {
-                                                                               progressDialog.dismiss();
-                                                                               Toast.makeText(MainActivity.this,task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                                                                           }
-
-                                                                       }
-                                                                   });
-
-
-
-
-                                                               }
-                                                               else
-                                                               {
-                                                                   progressDialog.dismiss();
-                                                                   Toast.makeText(MainActivity.this,task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                                                               }
-                                                           }
-                                                       });
-
-
-
-                                               //limparCampos();
-                                           }
-                                           else
-                                           {
-                                               progressDialog.dismiss();
-                                               Toast.makeText(MainActivity.this,"Email já cadastrado", Toast.LENGTH_LONG).show();
-
-                                           }
-                                       }
-                                   });
                        }
                        else
                        {
@@ -219,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                }
                else
                    {
-                       Toast.makeText(MainActivity.this,"DIgite um email Valido", Toast.LENGTH_LONG).show();
+                       Toast.makeText(MainActivity.this,"Digite um email válido", Toast.LENGTH_LONG).show();
                    }
            }
 
@@ -241,12 +140,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             finish();
             startActivity(new Intent(this,LoginActivity.class));
         }
-    }
-
-    private void limparCampos()
-    {
-        edtemail.setText("");
-        edtsenha.setText("");
     }
 
 }
