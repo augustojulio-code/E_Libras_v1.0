@@ -1,12 +1,18 @@
 package com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.controller;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import android.support.annotation.Nullable;
+import android.text.InputType;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +23,7 @@ import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Userscore;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.modelo.Usuario;
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.recursos.Recursos;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -245,12 +252,75 @@ public class UserController {
 
 
         }
+    }
 
+    // Recuperar Senha
+    public void ResetPassword(String email){
 
+        try {
+            firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        return;
+                    }
 
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    return;
+                }
+            });
+        }
+        catch (Exception e){
+
+        }
 
     }
 
+    //Dialog de Recuperação de senha via E-mail
+    public void ResetPasswordDialog(Context context){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Recuperar senha");
+        builder.setMessage("A nova senha sera enviada para este email");
+
+        LinearLayout linearLayout = new LinearLayout(context);
+
+        final EditText emailtext = new EditText(context);
+        emailtext.setHint("Email");
+        emailtext.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+
+        emailtext.setMinEms(10);
+
+        linearLayout.addView(emailtext);
+        linearLayout.setPadding(10,10,10,10);
+
+        builder.setView(linearLayout);
+
+        builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i)
+            {
+                String semail = emailtext.getText().toString().trim();
+
+                ResetPassword(semail);
+
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i)
+            {
+                dialogInterface.dismiss();
+            }
+        });
+
+        builder.create().show();
+    }
 }
 
 

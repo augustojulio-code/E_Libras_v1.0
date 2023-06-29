@@ -1,27 +1,18 @@
 package com.example.e_libas_v_0_01;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.e_libas_v_0_01.com.example.e_libras_v_0_01.com.example.controller.UserController;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener
 {
@@ -31,8 +22,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private UserController controller = new UserController();
     private ProgressDialog barra;
 
-
-    //Tratando as reduncias do Login
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -61,18 +50,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String lemail = txtedtemail.getText().toString().trim();
         String lsenha = txtedtsenha.getText().toString().trim();
 
-        if(TextUtils.isEmpty(lemail))
+        if(TextUtils.isEmpty(lemail) || TextUtils.isEmpty(lsenha) )
         {
-            Toast.makeText(this,"Digite um email",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Preencha todos os campos",Toast.LENGTH_LONG).show();
 
             return;
         }
-        if (TextUtils.isEmpty(lsenha))
-        {
-            Toast.makeText(this,"Digite uma senha", Toast.LENGTH_LONG).show();
 
-            return;
-        }
 
         try{
             controller.UserLogin(lemail,lsenha);
@@ -98,81 +82,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         if (view == recuperarsenha)
         {
-            recuperarSenhaDialog();
+            controller.ResetPasswordDialog(LoginActivity.this);
+            barra.setMessage("Aguarde");
+            barra.show();
+
         }
     }
 
-    //Recuperação de senha via E-mail
 
-    private void recuperarSenhaDialog()
-    {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Recuperar senha");
-        builder.setMessage("A nova senha sera enviada para este email");
-
-        LinearLayout linearLayout = new LinearLayout(this);
-
-        final EditText emailtext = new EditText(this);
-        emailtext.setHint("Email");
-        emailtext.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
-
-        emailtext.setMinEms(10);
-
-        linearLayout.addView(emailtext);
-        linearLayout.setPadding(10,10,10,10);
-
-        builder.setView(linearLayout);
-
-        builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i)
-            {
-                String semail = emailtext.getText().toString().trim();
-                recuperarStart(semail);
-            }
-        });
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i)
-            {
-                dialogInterface.dismiss();
-            }
-        });
-
-        builder.create().show();
-    }
-
-    private void recuperarStart(String semail)
-    {
-        barra.setMessage("Aguarde");
-        barra.show();
-
-        /*firebaseAuth.sendPasswordResetEmail(semail).addOnCompleteListener(new OnCompleteListener<Void>()
-        {
-            @Override
-            public void onComplete(@NonNull Task<Void> task)
-            {
-                if (task.isSuccessful())
-                {
-                    barra.dismiss();
-                    Toast.makeText(LoginActivity.this,"Email enviado",Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    barra.dismiss();
-                    Toast.makeText(LoginActivity.this,"Falha ao enviar",Toast.LENGTH_LONG).show();
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener()
-        {
-            @Override
-            public void onFailure(@NonNull Exception e)
-            {
-                barra.dismiss();
-                Toast.makeText(LoginActivity.this,""+e.getMessage(),Toast.LENGTH_LONG).show();
-            }
-        });*/
-    }
 }
