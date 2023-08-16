@@ -18,10 +18,6 @@
 </p>
 <br>
 
-## Project status
-* concluded
-
-
 
 ## Screen layout 
 
@@ -45,6 +41,9 @@
 <img src="https://github.com/augustojulio-code/WireframeRepository/blob/master/E_libras/WireStudyScreen.PNG" width = 162px/>
 <img src="https://github.com/augustojulio-code/WireframeRepository/blob/master/E_libras/WireActivityScreen.PNG" width = 162px />
 </p>
+
+## Project status
+* concluded
 
 ### You can find me on Linkedin: <a href="https://www.linkedin.com/in/julio-augusto-a99308119/"><img src="https://media1.giphy.com/media/HQTYdpx1yhxWpugAi2/giphy.gif?cid=ecf05e475wvxroh7lso1o43rzmla6dixesq4ozeuow979u1j&rid=giphy.gif&ct=s" width=50> 
   </a>
